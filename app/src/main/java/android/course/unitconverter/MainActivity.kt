@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -104,8 +105,14 @@ fun UnitConverter(){
             //inputBox
         //where all the ui elements will be stacked next to each other
             Box {
-                Button(onClick = {iExpanded = true}) {
-                    Text(inputUnit)
+                Button(
+                    onClick = {iExpanded = true},
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary
+                    )
+                ) {
+                    Text(inputUnit, color = MaterialTheme.colorScheme.tertiary)
+
                     Icon(Icons.Default.ArrowDropDown,
                         contentDescription = "Arrow Down")
                 }
@@ -153,8 +160,13 @@ fun UnitConverter(){
             Spacer(modifier = Modifier.width(16.dp))
             //outputBox
             Box {
-                Button(onClick = {oExpanded = true}) {
-                    Text(outputUnit)
+                Button(
+                    onClick = {oExpanded = true},
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary
+                    )
+                ) {
+                    Text(outputUnit, color = MaterialTheme.colorScheme.tertiary)
                     Icon(Icons.Default.ArrowDropDown,
                         contentDescription = "Arrow Down")
                 }
