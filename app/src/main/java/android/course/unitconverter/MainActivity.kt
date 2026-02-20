@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import android.course.unitconverter.ui.theme.UnitConverterTheme
+import android.webkit.WebSettings
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -44,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.math.roundToInt
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
             UnitConverterTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     UnitConverter()
                 }
@@ -72,11 +74,7 @@ fun UnitConverter(){
     var oConversionFactor = remember { mutableStateOf(1.0) }
 
 
-    val customTextStyle = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontSize = 24.sp,
-        color = Color.Blue
-    )
+
 
     fun convertUnits() {
         val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
@@ -91,8 +89,7 @@ fun UnitConverter(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         //where all the ui elements will be stacked below each other
-        Text("Unit Converter",
-            style = customTextStyle)
+        Text("Unit Converter", style = MaterialTheme.typography.titleLarge)
         Spacer(modifier = Modifier.size(16.dp))
         OutlinedTextField(
             value = inputValue,
@@ -205,17 +202,16 @@ fun UnitConverter(){
         }
         Spacer(modifier = Modifier.size(16.dp))
         //Result text
-        Text("Result: $outputValue $outputUnit",
-            style = MaterialTheme.typography.headlineMedium)
+        Text("Result: $outputValue $outputUnit", style = MaterialTheme.typography.bodyLarge)
     }
 
 }
 
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun UnitConverterPreview(){
-    UnitConverter()
+    UnitConverterTheme {
+        UnitConverter()
+    }
 }
